@@ -1,0 +1,53 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title><h2>To Do List</h2></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <!-- {{ name }} -->
+      <div *ngFor="let todo of todos; let i = index">
+        <button (click)="delete(i)">x</button>
+        {{ todo.name }}
+        <mat-checkbox
+          class="example-margin"
+          (change)="addToDone(i, $event)"
+        ></mat-checkbox>
+      </div>
+      <h4>
+        All Done!! 🏖
+        <mat-checkbox
+          class="example-margin"
+          [checked]="allCheck"
+        ></mat-checkbox>
+      </h4>
+    </mat-card-content>
+  </mat-card>
+
+  <form action="" [formGroup]="todo">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title><h2>Add To Do</h2></mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field style="width:100%">
+          <input type="text" formControlName="name" matInput />
+        </mat-form-field>
+
+        <button (click)="addToDo()">Add To Do</button>
+      </mat-card-content>
+    </mat-card>
+  </form>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title><h2>Completed 🎉</h2></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngFor="let todo of todos; let i = index">
+        <span [hidden]="todo.hide">
+          {{ todo.name }}
+        </span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
